@@ -1,0 +1,8 @@
+  1) SELECT * FROM PERSONNE WHERE adresse LIKE '%Avenue%'
+  
+  2) Select * from personne where telephone IS NULL
+  UPDATE PERSONNE SET telephone = 'N''as pas d''amis' WHERE telephone IS NULL;
+  
+  3) Select DISTINCT NOM, PRENOM FROM FILM INNER JOIN PERSONNE ON REALISATEUR = NUMPERSONNE WHERE VILLE LIKE 'N%';
+  
+  4)
