@@ -46,4 +46,26 @@ ORDER BY Genre.LibelleGenre
 FROM ( SELECT COUNT(NumSalle) AS NbSalle , Cinema.Nom as NomCine FROM Salle RIGHT JOIN Cinema ON Salle.NumCinema = Cinema.NumCinema GROUP BY Cinema.Nom) Cine WHERE Cine.NbSalle = 0
 
 
-11) INSERT INTO CinemaSalle ("Decavision", "1", "40", "150") SELECT Cinema.Nom, Salle.NumSalle, Salle.Taille_Ecran, Salle.NbPlaces FROM Salle INNER JOIN Cinema ON Salle.NumCinema = Cinema.NumCinema;
+11) 
+INSERT INTO Salle (NumCinema,NumSalle,Taille_Ecran, NbPlaces) VALUES ((SELECT NumCinema FROM Cinema WHERE Nom = 'Decavision'), 1,40,150);
+
+12)SELECT Cinema.Nom, Salle.NumSalle, Film.Titre, Programmation.Date_deb, Programmation.Date_fin, Programmation.horaire, Programmation.Prix
+FROM Cinema INNER JOIN Salle ON Cinema.NumCinema = Salle.NumCinema
+LEFT JOIN Programmation ON (Salle.NumCinema = Programmation.NumCinema AND Salle.NumSalle = Programmation.NumSalle)
+
+13)SELECT SUM(Salaire) FROM Film
+INNER JOIN Distribution ON Film.NumFilm = Distribution.NumFilm
+INNER JOIN Acteur ON Distribution.NumActeur = Acteur.NumActeur
+WHERE Film.Titre LIKE 'Jurassic Parc';
+
+-------------------------
+
+TP2
+
+1) Utilisation du fichier
+
+2) ALTER TABLE Membre ADD CONSTRAINT Unicite_Nom_Prenom_Telephone UNIQUE (Nom, Prenom, Telephone);
+
+3) ALTER TABLE Membre ADD COLUMN MOBILE char(10) CONSTRAINT Constrainte_Mobile CHECK ( MOBILE LIKE '06%' OR MOBILE LIKE '07%');
+
+4) 
